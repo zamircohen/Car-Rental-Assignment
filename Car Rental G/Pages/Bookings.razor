@@ -56,23 +56,4 @@ else
     </table>
 }
 
-@*@code {
 
-    public class Booking
-    {
-        public string RegNo { get; set; } = "";
-        public string Customer { get; set; } = "";
-        public int KmRented { get; set; }
-        public int KmReturned { get; set; }
-        public DateTime Rented { get; set; }
-        public DateTime? Returned { get; set; }
-        public double Cost { get; set; }
-        public bool Status { get; set; } 
-    }
-
-    List<Booking> bookings = new List<Booking>
-    {
-        new Booking { RegNo = "ABC123", Customer = "Michael Savage", KmRented = 10000, KmReturned = 10000, Rented = DateTime.Now, Cost = 1000, Status = true },
-        new Booking { RegNo = "DEF456", Customer = "John Doe", KmRented = 20000, KmReturned = 20000, Rented = DateTime.Now, Returned = new DateTime(2023, 11, 5, 8, 0, 0), Cost = 2000, Status = false },
-    };
-}*@
