@@ -1,0 +1,63 @@
+﻿@page "/vehicles"
+@using Car_Rental_G;
+@using Car_Rental_G.Data;
+
+<PageTitle>Vehicles</PageTitle>
+
+<h1>Cars</h1>
+
+<div class="container text-center">
+    <div class="row row-cols-4">
+        @foreach (var vehicle in VehiclesDatabase.vehicles)
+        {
+            <div class="card" style="width: 18rem; margin: 1rem">
+                <img src="@vehicle.Image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@vehicle.Make</h5>
+                    <p class="card-text">- @vehicle.Type -</p>
+                    <br />
+                    <p class="card-text">Price: $@vehicle.CostDay</p>
+                    <p class="card-text">Odometer: @vehicle.Odometer</p>
+                    <p class="card-text">Cost per Km: @vehicle.CostKm</p>
+                    <p class="card-text">Cost per Day: @vehicle.CostDay</p>
+                    <p class="card-text"><i><small>RegNo: @vehicle.RegNo</small></i></p>
+                    @if (vehicle.Status)
+                    {
+                        <span class="badge bg-success">Available</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Booked</span>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+@*@code {
+
+    public class Vehicle
+    {
+        public string RegNo { get; set; } = "";
+        public string Make { get; set; } = "";
+        public int Odometer { get; set; }
+        public double CostKm { get; set; }
+        public int CostDay { get; set; }
+        public string Image { get; set; } = "";
+        public string Type { get; set; } = "";
+        public bool Status { get; set; } = true;
+    }
+
+    List<Vehicle> vehicles = new List<Vehicle>
+    {
+        new Vehicle { RegNo = "ABC123", Make = "Volkswagen", Odometer = 10000, CostKm = 1, CostDay = 200, Image = "https://imgd.aeplcdn.com/664x374/n/cw/ec/144681/virtus-exterior-right-front-three-quarter.jpeg?isig=0&q=80&q=80", Type = "Combi"},
+        new Vehicle { RegNo = "DEF456", Make = "BMW", Odometer = 20000, CostKm = 1, CostDay = 100, Image = "https://cdni.autocarindia.com/utils/imageresizer.ashx?n=https://cms.haymarketindia.net/model/uploads/modelimages/BMW-2-Series-Gran-Coupe-271220221147.jpg", Type = "Sedan"},
+        new Vehicle { RegNo = "GHI789", Make = "Audi", Odometer = 5000, CostKm = 3, CostDay = 200, Image = "https://cdni.autocarindia.com/utils/imageresizer.ashx?n=https://cms.haymarketindia.net/model/uploads/modelimages/Audi-A4-190120211207.jpg&w=350&h=251&q=90&c=1", Type = "Combi", Status = false},
+        new Vehicle { RegNo = "JKL012", Make = "Jeep", Odometer = 3000, CostKm = 1.5, CostDay = 300, Image = "https://cdn.jdpower.com/Models/320x240/2023-Jeep-Compass.jpg", Type = "SUV"},
+        new Vehicle { RegNo = "MNO234", Make = "Yamaha", Odometer = 300000, CostKm = 0.5, CostDay = 50, Image = "https://cdn2.yamaha-motor.eu/prod/product-assets/2023/MT07A/2023-Yamaha-MT07A-EU-Icon_Blue-Studio-001-03.jpg", Type = "Motorcycle"}
+    };
+}*@

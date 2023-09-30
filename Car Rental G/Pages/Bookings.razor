@@ -1,0 +1,78 @@
+﻿@page "/bookings"
+@using Car_Rental_G;
+@using Car_Rental_G.Data;
+
+@inject HttpClient Http
+
+<PageTitle>Bookings</PageTitle>
+
+<h1>Bookings</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (BookingsDatabase.bookings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reg No</th>
+                <th>Customer</th>
+                <th>Km Rented</th>
+                <th>Km Returned</th>
+                <th>Rented</th>
+                <th>Returned</th>
+                <th>Cost</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in BookingsDatabase.bookings)
+            {
+                <tr>
+                    <td><b>@booking.RegNo</b></td>
+                    <td>@booking.Customer</td>
+                    <td>@booking.KmRented</td>
+                    <td>@booking.KmReturned</td>
+                    <td>@booking.Rented.ToString("dd/MM/yyyy")</td>
+                    <td>@(booking.Returned.HasValue ? booking.Returned.Value.ToString("dd/MM/yyyy") : "")</td>
+                    <td>@booking.Cost</td>
+                    <td>
+                    @if (@booking.Returned.HasValue)
+                    {
+                        <span class="badge bg-danger">Closed</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Open</span>
+                    }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@*@code {
+
+    public class Booking
+    {
+        public string RegNo { get; set; } = "";
+        public string Customer { get; set; } = "";
+        public int KmRented { get; set; }
+        public int KmReturned { get; set; }
+        public DateTime Rented { get; set; }
+        public DateTime? Returned { get; set; }
+        public double Cost { get; set; }
+        public bool Status { get; set; } 
+    }
+
+    List<Booking> bookings = new List<Booking>
+    {
+        new Booking { RegNo = "ABC123", Customer = "Michael Savage", KmRented = 10000, KmReturned = 10000, Rented = DateTime.Now, Cost = 1000, Status = true },
+        new Booking { RegNo = "DEF456", Customer = "John Doe", KmRented = 20000, KmReturned = 20000, Rented = DateTime.Now, Returned = new DateTime(2023, 11, 5, 8, 0, 0), Cost = 2000, Status = false },
+    };
+}*@

@@ -1,0 +1,65 @@
+﻿@page "/customers"
+@using Car_Rental_G;
+@using Car_Rental_G.Data;
+
+<PageTitle>Customers</PageTitle>
+
+<h1>Customers</h1>
+<table>
+    <tr>
+        <th>SSN</th>
+        <th>First name</th>
+        <th>Last name</th>
+    </tr>
+
+    @foreach (var customer in CustomersDatabase.customers)
+    {
+        <tr>
+            <td><b>@customer.SSN</b></td>
+            <td>@customer.FirstName</td>
+            <td>@customer.LastName</td>
+        </tr>
+    }
+</table>
+
+
+@* @page "/customers"
+@using Car_Rental_G;
+
+<PageTitle>Customers</PageTitle>
+
+<h1>Customers</h1>
+<table>
+    <tr>
+        <th>SSN</th>
+        <th>First name</th>
+        <th>Last name</th>
+    </tr>
+
+    @foreach (var customer in customers)
+    {
+        <tr>
+            <td><b>@customer.SSN</b></td>
+            <td>@customer.FirstName</td>
+            <td>@customer.LastName</td>
+        </tr>
+    }
+</table>
+
+@code {
+
+    public class Customer
+    {
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+        public int SSN { get; set; }
+    }
+
+    List<Customer> customers = new List<Customer>
+    {
+        new Customer { FirstName = "Michael", LastName = "Savage", SSN = 114455 },
+        new Customer { FirstName = "John", LastName = "Doe", SSN = 565656 }
+    };
+} *@
+
+
