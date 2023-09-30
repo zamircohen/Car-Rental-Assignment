@@ -8,8 +8,6 @@
 
 <h1>Bookings</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
-
 @if (BookingsDatabase.bookings == null)
 {
     <p><em>Loading...</em></p>
@@ -38,7 +36,9 @@ else
                     <td>@booking.KmRented</td>
                     <td>@booking.KmReturned</td>
                     <td>@booking.Rented.ToString("dd/MM/yyyy")</td>
+
                     <td>@(booking.Returned.HasValue ? booking.Returned.Value.ToString("dd/MM/yyyy") : "")</td>
+
                     <td>@booking.Cost</td>
                     <td>
                     @if (@booking.Returned.HasValue)

@@ -9,6 +9,5 @@
         public DateTime Rented { get; set; }
         public DateTime? Returned { get; set; }
         public double Cost { get; set; }
-        public bool Status { get; set; }
     }
 }
