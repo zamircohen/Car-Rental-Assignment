@@ -1,8 +1,6 @@
 ﻿@page "/customers"
-@using Car_Rental.Common.Interfaces
-@using Car_Rental.Classes
-@using Car_Rental.Data.Interfaces
-@inject IData DataService
+@using Car_Rental.Business
+@inject BookingProcessor customers
 
 <h1>Customers</h1>
 <table>
@@ -14,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var customer in DataService.GetCustomers())
+        @foreach (var customer in customers.GetCustomers())
         {
             <tr>
                 <td><b>@customer.SSN</b></td>

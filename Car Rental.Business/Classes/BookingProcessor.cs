@@ -1,11 +1,15 @@
-﻿//BookingProcessor.cs
-using Car_Rental.Classes;
-using Car_Rental.Common.Interfaces;
+﻿using Car_Rental.Common.Interfaces;
+using Car_Rental.Data.Interfaces;
 
 namespace Car_Rental.Business
 {
     public class BookingProcessor
     {
+        private readonly IData dataService;
+        public BookingProcessor(IData dataService)
+        {
+            this.dataService = dataService;
+        }
         public static double CalculateCost(IBooking booking, IVehicle vehicle)
         {
             TimeSpan rentalPeriod = booking.Returned.HasValue ? booking.Returned.Value - booking.Rented : DateTime.Now - booking.Rented;
@@ -18,6 +22,22 @@ namespace Car_Rental.Business
 
             return cost;
         }
+
+        public IEnumerable<ICustomer> GetCustomers()
+        {
+            return dataService.GetCustomers();
+        }
+
+        public IEnumerable<IVehicle> GetVehicles()
+        {
+            return dataService.GetVehicles();
+        }
+
+        public IEnumerable<IBooking> GetBookings()
+        {
+            return dataService.GetBookings();
+        }
+
     }
 }
 

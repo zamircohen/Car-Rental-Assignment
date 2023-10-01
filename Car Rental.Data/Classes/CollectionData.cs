@@ -1,6 +1,4 @@
 ﻿using Car_Rental.Common.Interfaces;
-using System;
-using System.Collections.Generic;
 using Car_Rental.Classes;
 using Car_Rental.Data.Interfaces;
 using Car_Rental.Common.Enums;
@@ -39,8 +37,8 @@ namespace Car_Rental.Data.Classes
             _bookings.AddRange(new List<IBooking>
             {
                 new Booking { RegNo = "ABC123", Customer = "Michael Savage", KmRented = 10000, Rented = DateTime.Now},
-                new Booking { RegNo = "DEF456", Customer = "John Doe", KmReturned = 30000, Rented = new DateTime(2023, 8, 15, 8, 0, 0), Returned = new DateTime(2023, 8, 20, 8, 0, 0)},
-                new Booking { RegNo = "GHI789", Customer = "Nicole Cohen", KmReturned = 6000, Rented = new DateTime(2023, 8, 15, 8, 0, 0), Returned = new DateTime(2023, 8, 16, 8, 0, 0)}
+                new Booking { RegNo = "DEF456", Customer = "John Doe", KmRented = 20000, KmReturned = 30000, Rented = new DateTime(2023, 8, 15, 8, 0, 0), Returned = new DateTime(2023, 8, 20, 8, 0, 0)},
+                new Booking { RegNo = "GHI789", Customer = "Nicole Cohen", KmRented = 5000, KmReturned = 6000, Rented = new DateTime(2023, 8, 15, 8, 0, 0), Returned = new DateTime(2023, 8, 16, 8, 0, 0)}
             });
         }
 

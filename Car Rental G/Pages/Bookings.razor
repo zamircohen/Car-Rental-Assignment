@@ -1,15 +1,14 @@
 ﻿@page "/bookings"
 @using System
-@using Car_Rental.Data.Interfaces
-@using Car_Rental.Business;
-
-@inject IData DataService
+@using Car_Rental.Business
+@inject BookingProcessor bookings
+@inject BookingProcessor vehicles
 
 <PageTitle>Bookings</PageTitle>
 
 <h1>Bookings</h1>
 
-@if (DataService.GetBookings() == null)
+@if (bookings.GetBookings() == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -29,7 +28,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var booking in DataService.GetBookings())
+            @foreach (var booking in bookings.GetBookings())
             {
                 <tr>
                     <td><b>@booking.RegNo</b></td>
@@ -43,7 +42,7 @@ else
                     <td>
                         @if (booking.Returned.HasValue)
                         {
-                            var vehicle = DataService.GetVehicles().FirstOrDefault(v => v.RegNo == booking.RegNo);
+                            var vehicle = vehicles.GetVehicles().FirstOrDefault(v => v.RegNo == booking.RegNo);
 
                             if (vehicle != null)
                             {
