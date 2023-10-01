@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Car_Rental.Common.Interfaces;
+﻿using Car_Rental.Common.Interfaces;
 
 namespace Car_Rental.Data.Interfaces
 {
