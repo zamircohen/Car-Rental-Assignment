@@ -1,27 +1,26 @@
 ﻿@page "/customers"
-@using Car_Rental_G;
-@using Car_Rental_G.Data;
-
-<PageTitle>Customers</PageTitle>
+@using Car_Rental.Common.Interfaces
+@using Car_Rental.Classes
+@using Car_Rental.Data.Interfaces
+@inject IData DataService
 
 <h1>Customers</h1>
 <table>
-    <tr>
-        <th>SSN</th>
-        <th>First name</th>
-        <th>Last name</th>
-    </tr>
-
-    @foreach (var customer in CustomersDatabase.customers)
-    {
+    <thead>
         <tr>
-            <td><b>@customer.SSN</b></td>
-            <td>@customer.FirstName</td>
-            <td>@customer.LastName</td>
+            <th>SSN</th>
+            <th>First name</th>
+            <th>Last name</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var customer in DataService.GetCustomers())
+        {
+            <tr>
+                <td><b>@customer.SSN</b></td>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+            </tr>
+        }
+    </tbody>
 </table>
-
-
-
-

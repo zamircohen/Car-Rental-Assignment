@@ -1,7 +1,6 @@
-﻿namespace Car_Rental_G.Classes
-
-{ 
-    public class Vehicle
+﻿namespace Car_Rental.Classes
+{
+    public class Vehicle : Common.Interfaces.IVehicle
     {
         public string RegNo { get; set; } = "";
         public string Make { get; set; } = "";

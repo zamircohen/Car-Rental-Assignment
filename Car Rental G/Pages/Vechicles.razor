@@ -1,6 +1,9 @@
 ﻿@page "/vehicles"
-@using Car_Rental_G;
-@using Car_Rental_G.Data;
+
+@using Car_Rental.Common.Interfaces
+@using Car_Rental.Data.Interfaces
+@using Car_Rental.Classes
+@inject IData DataService
 
 <PageTitle>Vehicles</PageTitle>
 
@@ -8,7 +11,7 @@
 
 <div class="container text-center">
     <div class="row row-cols-4">
-        @foreach (var vehicle in VehiclesDatabase.vehicles)
+        @foreach (var vehicle in DataService.GetVehicles())
         {
             <div class="card" style="width: 18rem; margin: 1rem;">
                 <img src="@vehicle.Image" class="card-img-top" alt="...">

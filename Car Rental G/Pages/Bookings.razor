@@ -1,14 +1,15 @@
 ﻿@page "/bookings"
-@using Car_Rental_G;
-@using Car_Rental_G.Data;
+@using System
+@using Car_Rental.Data.Interfaces
+@using Car_Rental.Business;
 
-@inject HttpClient Http
+@inject IData DataService
 
 <PageTitle>Bookings</PageTitle>
 
 <h1>Bookings</h1>
 
-@if (BookingsDatabase.bookings == null)
+@if (DataService.GetBookings() == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -28,32 +29,41 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var booking in BookingsDatabase.bookings)
+            @foreach (var booking in DataService.GetBookings())
             {
                 <tr>
                     <td><b>@booking.RegNo</b></td>
                     <td>@booking.Customer</td>
                     <td>@booking.KmRented</td>
-                    <td>@booking.KmReturned</td>
+                    <td>@(booking.KmReturned != 0 ? booking.KmReturned.ToString() : "")</td>
                     <td>@booking.Rented.ToString("dd/MM/yyyy")</td>
 
                     <td>@(booking.Returned.HasValue ? booking.Returned.Value.ToString("dd/MM/yyyy") : "")</td>
 
-                    <td>@booking.Cost</td>
                     <td>
-                    @if (@booking.Returned.HasValue)
-                    {
-                        <span class="badge bg-danger">Closed</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-success">Open</span>
-                    }
+                        @if (booking.Returned.HasValue)
+                        {
+                            var vehicle = DataService.GetVehicles().FirstOrDefault(v => v.RegNo == booking.RegNo);
+
+                            if (vehicle != null)
+                            {
+                                @BookingProcessor.CalculateCost(booking, vehicle)
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @if (booking.Returned.HasValue)
+                        {
+                            <span class="badge bg-danger">Closed</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Open</span>
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
-
-

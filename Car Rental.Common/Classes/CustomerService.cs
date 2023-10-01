@@ -1,6 +1,6 @@
-﻿namespace Car_Rental_G.Classes
+﻿namespace Car_Rental.Classes
 {
-    public class Customer
+    public class Customer : Common.Interfaces.ICustomer
     {
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";
